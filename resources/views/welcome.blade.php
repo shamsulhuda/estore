@@ -54,7 +54,7 @@
                                     <div class="product__hover__info">
                                         <ul class="product__action">
                                             <li><a data-id="{{ $product->id }}" title="Quick View" class="quick-view modal-view detail-link product_view_details" href="#"><span class="ti-plus"></span></a></li>
-                                            {{-- <li><a title="Add TO Cart" href="{{ route('add_to_cart')}}"><span class="ti-shopping-cart"></span></a></li> --}}
+                                            
 
                                             <li>
                                                 <a title="Add TO Cart"><span data-id="{{$product->id}}" class="ti-shopping-cart addCart"></span></a>
@@ -62,7 +62,7 @@
                                         </ul>
                                     </div>
                                     <div class="add__to__wishlist">
-                                        <a data-toggle="tooltip" title="Add To Wishlist" class="add-to-cart" href="wishlist.html"><span class="ti-heart"></span></a>
+                                        <a data-toggle="tooltip" title="Add To Wishlist" class="add-to-cart" href="{{route('user.wishlist')}}"><span class="ti-heart"></span></a>
                                     </div>
                                 </div>
                                 <div class="product__details">

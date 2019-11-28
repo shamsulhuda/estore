@@ -281,6 +281,64 @@
 }
 
 
+/*user dropdown*/
+
+.main__menu .user_drop{
+    position: relative;
+}
+.main__menu .user_drop a{
+  position: relative;
+}
+.user_drop .user_dropdown {
+  background: #ffffff none repeat scroll 0 0;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+  left: 0;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  top: 120%;
+  transition: all 0.2s ease-in-out 0s;
+  visibility: hidden;
+  width: 189px;
+  z-index: 99;
+}
+.user_drop:hover .user_dropdown {
+  opacity: 1;
+  top: 100%;
+  visibility: visible;
+}
+.header--3 .main__menu .user_drop:hover .user_dropdown {
+    top: 100%;
+}
+ul.user_dropdown li {
+    border-bottom: 1px solid #f4f4f4;
+    display: block;
+}
+.user_drop .user_dropdown li a {
+  background: #ffffff none repeat scroll 0 0;
+  color: #333;
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 10px 18px;
+  text-align: left;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+}
+.main__menu .user_drop .user_dropdown li:hover > a {
+  background: #fafafa none repeat scroll 0 0;
+  color: #ff4136;
+}
+.scroll-header .main__menu .user_drop .user_dropdown {
+  top: 100%;
+}
+.scroll-header .main__menu .user_drop a:hover .user_dropdown {
+  top: 100%;
+}
+
+
 
 /*----------------------------
   Sub Menu

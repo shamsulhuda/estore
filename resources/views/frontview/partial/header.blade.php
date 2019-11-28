@@ -109,17 +109,49 @@
                 <!-- End MAinmenu Ares -->
                 <div class="col-md-2 col-lg-2 col-6">  
                     <ul class="menu-extra">
-                        <li class="search search__open d-none d-sm-block"><span class="ti-search"></span></li>
-                        <li>
-                            <a href="{{route('user.dashboard')}}"><span class="ti-user"></span></a>
+                        <li class="search search__open d-none d-sm-block"><span class="ti-search"></span>
+                        </li>
+
+                        
+                        <li class="user_drop">
+                            <a href="#">
+                                <span class="ti-user"></span>
+                            </a>
+                            <ul class="user_dropdown">
+                                @if(Auth::check())
+                                <li><a href="#">{{Auth::user()->name}}</a></li>
+                                <li><a href="{{route('user.dashboard')}}"target="__blank">Dashboard</a></li>
+                                <li>
+                                    <a href="{{route('logout')}}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                      Logout
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    </a>
+                                </li>
+                                @else
+                                <li><a href="{{route('login')}}">Login/Register</a></li>
+                                @endif
+                            </ul>
+                        </li>
+
+
+                        <li class="cart__menu">
+                            <div id="ex4">
+                                <span class="p1 fa-stack cartBox" id="wishItem" data-count="{{5}}">
+                                    <i class="ti-heart"></i>
+                                </span>
+                            </div>
                         </li>
                         <li class="cart__menu">
                             <div id="ex4">
                                 <span class="p1 fa-stack cartBox" id="totalItemsss" data-count="{{ Cart::count()}}">
-                                    <i class="ti-shopping-cart xti-inverse"></i>
+                                    <i class="ti-shopping-cart"></i>
                                 </span>
                             </div>
                         </li>
+
                         <li class="toggle__menu d-none d-md-block"><span class="ti-menu"></span></li>
                     </ul>
                 </div>

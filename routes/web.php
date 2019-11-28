@@ -32,4 +32,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'admin', 'namespace'=>'admin'], f
 //user routes
 Route::group(['prefix'=>'user', 'middleware'=>'auth', 'namespace'=>'user'], function(){
 	Route::get('dashboard', 'DashboardController@index')->name('user.dashboard');//dashboard home
+
 });
+
+Route::get('wishlist', 'WishListController@index')->name('user.wishlist')->middleware('auth');//wishlist
