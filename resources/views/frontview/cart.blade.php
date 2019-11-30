@@ -52,8 +52,8 @@
                                         <?php
                                             $total_price = ($row->price) * ($row->qty);
                                         ?>
-                                        <tr>
-                                            <td class="product-thumbnail"><a href="#"><img src="{{asset("uploads/products/{$row->options->image}")}}" alt="product img" /></a></td>
+                                        <tr id="remove_row">
+                                            <td class="product-thumbnail"><a href="{{route('details',$row->id)}}"><img src="{{asset("uploads/products/{$row->options->image}")}}" alt="product img" /></a></td>
                                             <td class="product-name"><a href="#">{{ $row->name }}</a></td>
                                             <td class="product-price"><span class="amount">{{number_format($row->price,2)}}</span></td>
                                             <td class="product-quantity"><input type="number" value="{{ $row->qty }}" /></td>
@@ -61,7 +61,7 @@
 
                                             
 
-                                            <td class="product-remove"><button type="button" class="btn btn-link remove_cart" id="{{$row->rowId}}">X</button></td>
+                                            <td class="product-remove"><a type="button" class="btn remove_cart" id="{{$row->rowId}}">X</a></td>
                                         </tr>
                                         @endforeach
                                         @else
@@ -74,7 +74,7 @@
                                 <div class="col-md-8 col-sm-12">
                                     <div class="buttons-cart">
                                         <input type="submit" value="Update Cart" />
-                                        <a href="#">Continue Shopping</a>
+                                        <a href="{{route('frontend')}}">Continue Shopping</a>
                                     </div>
                                     <div class="coupon">
                                         <h3>Coupon</h3>

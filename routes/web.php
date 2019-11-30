@@ -38,6 +38,7 @@ Route::group(['prefix'=>'user', 'middleware'=>'auth', 'namespace'=>'user'], func
 Route::group(['middleware'=>'auth'], function(){
 	Route::get('wishlist', 'WishListController@index')->name('user.wishlist');//wishlist
 	Route::post('/add/to/wishlist', 'WishListController@add_wishitem')->name('add.wishitem');//wishlist
+	Route::delete('/remove/wishitem/{id}', 'WishListController@removeItem')->name('delete.wishItem');//wishlist item remove/delete
 });
 
 

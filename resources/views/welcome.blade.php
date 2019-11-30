@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="product__hover__info">
                                         <ul class="product__action">
-                                            <li><a data-id="{{ $product->id }}" title="Quick View" class="quick-view modal-view detail-link product_view_details" href="#"><span class="ti-plus"></span></a></li>
+                                            <li><a data-id="{{ $product->id }}" title="Quick View" class="btn quick-view modal-view detail-link product_view_details"><span class="ti-plus"></span></a></li>
                                             
 
                                             <li>

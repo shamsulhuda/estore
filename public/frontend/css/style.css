@@ -4060,3 +4060,17 @@ a.shipping-calculator-button:hover{
   text-align:center;
   min-width: 1.3em;
 }
+
+#ex5 .wishlist_heart:after{
+  position:absolute;
+  top:0px;
+  content: attr(data-total);
+  font-size:60%;
+  padding:.3em;
+  border-radius:50%;
+  line-height:1em;
+  color: white;
+  background:rgba(255,0,0,.85);
+  text-align:center;
+  min-width: 1.3em;
+}

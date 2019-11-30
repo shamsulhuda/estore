@@ -41,27 +41,21 @@
                                                 <th class="product-thumbnail">Image</th>
                                                 <th class="product-name"><span class="nobr">Product Name</span></th>
                                                 <th class="product-price"><span class="nobr"> Unit Price </span></th>
-                                                <th class="product-stock-stauts"><span class="nobr"> Stock Status </span></th>
+                                                <th class="product-stock-stauts"><span class="nobr"> Wish Date </span></th>
                                                 <th class="product-add-to-cart"><span class="nobr">Add To Cart</span></th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($wishlist_data as $item)
                                             <tr>
-                                                <td class="product-remove"><a href="#">×</a></td>
-                                                <td class="product-thumbnail"><a href="#"><img src="{{asset('frontend/images/product/4.png')}}" alt="" /></a></td>
-                                                <td class="product-name"><a href="#">Vestibulum suscipit</a></td>
-                                                <td class="product-price"><span class="amount">£165.00</span></td>
-                                                <td class="product-stock-status"><span class="wishlist-in-stock">In Stock</span></td>
-                                                <td class="product-add-to-cart"><a href="#"> Add to Cart</a></td>
+                                                <td class="product-remove"><a class="btn remove_wishItem" id="{{$item->id}}">×</a></td>
+                                                <td class="product-thumbnail"><a href="#"><img src="{{asset("uploads/products/{$item->product->image}")}}" alt="" /></a></td>
+                                                <td class="product-name"><a href="#">{{$item->product->product_name}}</a></td>
+                                                <td class="product-price"><span class="amount">{{number_format($item->product->price,2)}} Tk.</span></td>
+                                                <td class="product-stock-status"><span class="wishlist-in-stock">{{$item->created_at->diffForHumans()}}</span></td>
+                                                <td class="product-add-to-cart"><a data-id="{{$item->product_id}}" class="btn addCart"> Add to Cart</a></td>
                                             </tr>
-                                            <tr>
-                                                <td class="product-remove"><a href="#">×</a></td>
-                                                <td class="product-thumbnail"><a href="#"><img src="{{asset('frontend/images/product/5.png')}}" alt="" /></a></td>
-                                                <td class="product-name"><a href="#">Vestibulum dictum magna</a></td>
-                                                <td class="product-price"><span class="amount">£50.00</span></td>
-                                                <td class="product-stock-status"><span class="wishlist-in-stock">In Stock</span></td>
-                                                <td class="product-add-to-cart"><a href="#"> Add to Cart</a></td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>

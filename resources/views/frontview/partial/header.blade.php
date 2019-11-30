@@ -137,10 +137,10 @@
                         </li>
 
 
-                        <li class="cart__menu">
-                            <div id="ex4">
-                                <span class="" id="totalwish">
-                                    <i class="ti-heart"></i>
+                        <li class="">
+                            <div id="ex5">
+                                <span class="wishlist_heart cartBox" id="totalwish" data-total="@if(Auth::check()){{$total_count}}@else 0 @endif">
+                                    <a href="{{route('user.wishlist')}}"><i class="ti-heart"></i></a>
                                 </span>
                             </div>
                         </li>
@@ -249,23 +249,25 @@
             <div class="offsetmenu__close__btn">
                 <a href="#"><i class="zmdi zmdi-close"></i></a>
             </div>
-            <div class="shp__cart__wrap" id="sideView">
-                <div class="shp__single__product">
+
+            <div class="shp__cart__wrap">
+                @foreach(Cart::content() as $row)
+                <div class="shp__single__product" id="remove_row">
                     <div class="shp__pro__thumb">
                         <a>
-                            <p id="title"></p>
-                            <img id="itemImage" src="" alt="product images">
+                            <img src="{{asset("uploads/products/{$row->options->image}")}}" alt="product images">
                         </a>
                     </div>
-                    {{-- <div class="shp__pro__details">
-                        <h2><a href="product-details.html">{{ $row->name}}</a></h2>
+                    <div class="shp__pro__details">
+                        <h2><a href="{{route('product.view')}}">{{$row->name}}</a></h2>
                         <span class="quantity">QTY: {{$row->qty}}</span>
-                        <span class="shp__price">{{$row->price}}</span>
+                        <span class="shp__price">{{$row->price}} Tk.</span>
                     </div>
                     <div class="remove__btn">
-                        <a href="#" title="Remove this item"><i data-id="{{$row->rowId}}" class="zmdi zmdi-close removeItem"></i></a>
-                    </div> --}}
+                        <a title="Remove this item" class="btn remove_cart" id="{{$row->rowId}}"><i class="zmdi zmdi-close"></i></a>
+                    </div>
                 </div>
+                @endforeach
             </div>
             <ul class="shoping__total">
                 <li class="subtotal">Subtotal: {{ Cart::subtotal() }}</li>

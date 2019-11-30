@@ -123,7 +123,7 @@
                     timer: 3000,
                 });
                 
-                $(el).closest("tr").remove();
+                $(el).closest("#remove_row").remove();
 
                 //for reload cart item
                 function refreshDiv(){
@@ -175,12 +175,14 @@
 
                         swal({
                             title: "Exists!",   
-                            text: "Oops! This Item already in your wishlist!",   
+                            html: "This Item already <strong style='color:blue'>Exists</strong> in your wishlist!",   
                             type: "info",   
                             timer: 3000,
                         });
 
                    }else{
+                    var data = $.parseJSON(data);
+                    $("#totalwish").attr('data-total',(data.total_wish));
 
                        swal({
                             title: "Success!",   
@@ -196,4 +198,41 @@
             });
     });
     // =================End of add to wishlist====================//
+
+
+    // ==========Remove wishlist item=============//
+    $('.remove_wishItem').on('click', function(){
+        var id = $(this).attr('id');
+        var el = this;
+
+        // alert(id);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/remove/wishitem/'+id,
+            type: 'delete',
+            data: {
+                id:'id'
+            },
+            success: function(data){
+
+                $.ajaxSetup({ cache: false });
+                swal({
+                    toast: true,
+                    title: "Success!",   
+                    html: data.status,   
+                    type: "success",   
+                    closeOnConfirm: false,
+                    timer: 3000,
+                });
+                
+                $(el).closest("tr").remove();
+            },
+            error: function(err){
+                console.log(err);
+            }
+        })
+    });
+    // ==========End of Remove wishlist item=============//
 </script>

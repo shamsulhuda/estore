@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use Cart;
+use App\Wishlist;
+use Auth;
 use DB;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     public function index(){
-    	return view('frontview.cart');
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $total_count = Wishlist::where('user_id', $userId)->count();
+        }
+    	return view('frontview.cart',compact('total_count'));
     }
 
     public function addCart($id){
@@ -34,10 +40,10 @@ class CartController extends Controller
     	
     }
 
-    public function check(){
-    	$contents = Cart::content();
-    	return response()->json($contents);
-    }
+    // public function check(){
+    // 	$contents = Wishlist::content();
+    // 	return response()->json($contents);
+    // }
 
     public function destroy($id){
 
