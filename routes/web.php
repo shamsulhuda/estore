@@ -35,4 +35,9 @@ Route::group(['prefix'=>'user', 'middleware'=>'auth', 'namespace'=>'user'], func
 
 });
 
-Route::get('wishlist', 'WishListController@index')->name('user.wishlist')->middleware('auth');//wishlist
+Route::group(['middleware'=>'auth'], function(){
+	Route::get('wishlist', 'WishListController@index')->name('user.wishlist');//wishlist
+	Route::post('/add/to/wishlist', 'WishListController@add_wishitem')->name('add.wishitem');//wishlist
+});
+
+

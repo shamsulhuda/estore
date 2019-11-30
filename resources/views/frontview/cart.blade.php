@@ -145,7 +145,6 @@
 
 <script type="text/javascript">
     
-
      {{-- remove item from cart --}}
     $('.remove_cart').on('click', function(){
         var id = $(this).attr('id');

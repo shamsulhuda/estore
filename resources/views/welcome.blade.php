@@ -62,7 +62,7 @@
                                         </ul>
                                     </div>
                                     <div class="add__to__wishlist">
-                                        <a data-toggle="tooltip" title="Add To Wishlist" class="add-to-cart" href="{{route('user.wishlist')}}"><span class="ti-heart"></span></a>
+                                        <a data-toggle="tooltip" title="Add To Wishlist" class="add_to_wishlist" data-id="{{$product->id}}" data-user="@if(Auth::check()){{Auth::user()->id}}@endif"><span class="ti-heart"></span></a>
                                     </div>
                                 </div>
                                 <div class="product__details">
@@ -173,87 +173,6 @@
     @include('frontview.partial.footerasset')
 
     
-
-    <script>
-        $('.product_view_details').on('click', function(){
-            var image_path = "{{asset('uploads/products/')}}";
-            var id = $(this).data('id');
-            $.ajax({
-                method: 'get',
-                url: '{{ route('product.view') }}',
-                data: {'id':id},
-                success: function(data){
-                    console.log(data);
-                    var product_details = $.parseJSON(data);
-                    
-                    $('#productId').attr('data-id', product_details.id);
-                    $('#product_name').text(product_details.product_name);
-                    
-                    $("#product_image").attr('src','<?php echo asset('uploads/products/')?>'+'/'+product_details.image);
-                    $('#product_actual_price').text(product_details.price).append(' Tk ');
-                    $('#product_size').text(product_details.size);
-                    
-                    var discount = product_details.discount;
-
-                    $('#product_sale_price').text((product_details.price)-((product_details.price)*(discount/100))).append(' Tk.');
-                    $('#discount_show').text(product_details.discount).append('% off');
-                    $('#description').html(product_details.description).text();
-
-                    $('#product_details_modal').modal('show');
-                },
-                error: function(err){
-                    console.log(err);
-                }
-            });
-        });
-    </script>
-{{-- add to cart --}}
-<script type="text/javascript">
-        $('.addCart').on('click', function(){
-            var id = $(this).data('id');
-
-            $.ajax({
-                url: "{{ url('/add/to/cart')}}/"+id,
-                type: 'GET',
-               
-                success: function(data){
-                   var data = $.parseJSON(data);
-                    $("#totalItemsss").attr('data-count',(data.totalItems));
-
-                    swal({
-                        toast: true,
-                        title: "Success!",   
-                        text: "Your item successfully added into the cart!",   
-                        type: "success",   
-                        closeOnConfirm: false,
-                        timer: 3000,
-                    });
-                    
-
-                     
-                    // $('.viewCart').on('click', function(){
-                    //     var items = data.dataItems;
-                    //     console.log(items.id);
-                    //     $.each(items, function(_, item){
-                    //         $('#title').append('<p> Title: ' + item.id + '</p>');
-                    //     });
-
-                    // });
-                    
-                    
-                    
-                    
-                },
-                error: function(err){
-                    console.log(err);
-                }
-            });
-            
-        });
-</script>
-
-
-
 
 
 </body>

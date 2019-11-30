@@ -139,7 +139,7 @@
 
                         <li class="cart__menu">
                             <div id="ex4">
-                                <span class="p1 fa-stack cartBox" id="wishItem" data-count="{{5}}">
+                                <span class="" id="totalwish">
                                     <i class="ti-heart"></i>
                                 </span>
                             </div>
