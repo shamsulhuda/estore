@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'eStore | slider')
+@section('title', 'eStore | Orders')
 
 @push('css')
 <!-- DataTables -->
@@ -12,42 +12,42 @@
       <div class="row">
         <div class="col-12">
 
+          {{-- {{ App\Order::where('user_id', 3)->get() }} --}}
+
           <div class="card">
-            <div class="card-header text-uppercase">
-              <a href="{{route('slider.create')}}" class="btn btn-info btn-sm">Add new slider</a>
-            </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="order-table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>slider title</th>
-                  <th>slider image</th>
-                  <th>Created at</th>
+                  <th>Customer Name</th>
+                  <th>Order time</th>
+                  <th>view order</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($sliders as $key=>$slider)
+                @foreach($orders as $key=>$order)
                 <tr>
-                  <td>{{$key + 1}}</td>
-                  <td>{{$slider->title}}</td>
+                  <td>{{$key+1}}</td>
+                  <td>{{ $order->user->name }}</td>
+                  <td>{{ \Carbon\Carbon::parse($order->created_at)->timezone('Asia/Dhaka')->format('d/m/Y \a\t h:i a')}}</td>
                   <td>
-                    <img src="{{asset("uploads/slider/{$slider->image}")}}" style="width: 60px; height: 40px;">
+                    <a href="{{ route('order.details', $order->id) }}"><i class="fa fa-eye" title="view order details"></i></a> || 
+                    <a href="{{ route('order.invoice', $order->id) }}"><i class="fas fa-print" title="invoice"></i></a>
                   </td>
-                  <td>{{ \Carbon\Carbon::parse($slider->created_at)->timezone('Asia/Dhaka')->format('d/m/Y \a\t h:i A')}}</td>
                   <td>
-                    <span><a href="{{route('slider.edit',$slider->id)}}" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i></a></span> | 
+                    <span><a href="" data-toggle="tooltip" title="Edit"><i class="fa fa-check"></i></a></span> | 
                     <span>
-                      <form id="delete-{{$slider->id}}" action="{{route('slider.destroy',$slider->id)}}" style="display: none;" method="POST">
+                      <form id="" action="" style="display: none;" method="POST">
                           @csrf
                           @method('DELETE')
                         </form>
 
-                        <a href="#" onclick="if (confirm('Are you sure want to delete this item?')) {
+                        <a href="#" onclick="if (confirm('Are you sure, to delete this item?')) {
                           event.preventDefault();
-                          document.getElementById('delete-{{$slider->id}}').submit();
+                          document.getElementById('').submit();
                         }else{
                           event.preventDefault();
                         }"><i class="fa fa-trash text-danger"></i></a>
@@ -75,15 +75,8 @@
 
 <script>
   $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
+    $("#order-table").DataTable();
+   
   });
 </script>
 

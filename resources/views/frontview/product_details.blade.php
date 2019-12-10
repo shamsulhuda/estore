@@ -16,7 +16,7 @@
                             <div class="bradcaump__inner text-center">
                                 <h2 class="bradcaump-title">Product Details</h2>
                                 <nav class="bradcaump-inner">
-                                  <a class="breadcrumb-item" href="index.html">Home</a>
+                                  <a class="breadcrumb-item" href="{{ route('frontend') }}">Home</a>
                                   <span class="brd-separetor">/</span>
                                   <span class="breadcrumb-item active">Product Details</span>
                                 </nav>
@@ -97,9 +97,8 @@
                                 </div>
                             </div>
                             <ul class="pro__dtl__btn">
-                                <li class="buy__now__btn"><a href="#">buy now</a></li>
-                                <li><a href="#"><span class="ti-heart"></span></a></li>
-                                <li><a href="#"><span class="ti-email"></span></a></li>
+                                <li class="buy__now__btn"><a data-id="{{$product_details->id}}" class="link addCart">Add to cart</a></li>
+                                <li><a class="link add_to_wishlist" data-id="{{ $product_details->id }}" data-user="@if(Auth::check()){{Auth::user()->id}}@endif"><span class="ti-heart"></span></a></li>
                             </ul>
                             <div class="pro__social__share">
                                 <h2>Share :</h2>

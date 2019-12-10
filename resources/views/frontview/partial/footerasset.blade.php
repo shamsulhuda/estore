@@ -8,11 +8,8 @@
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="{{asset('frontend/js/main.js')}}"></script>
 
-    <script type="text/javascript">
-    	$(window).load(function(){          
-            $("#preloaders").fadeOut(2000);
-   		});
-    </script>
+    @yield('scripts')
+
     @include('sweetalert::alert')
 
 
@@ -66,28 +63,14 @@
                     $("#totalItemsss").attr('data-count',(data.totalItems));
 
                     swal({
-                        toast: true,
                         title: "Success!",   
                         text: "Your item successfully added into the cart!",   
-                        type: "success",   
-                        closeOnConfirm: false,
+                        type: "success",
                         timer: 3000,
                     });
                     
+                        
 
-                     
-                    // $('.viewCart').on('click', function(){
-                    //     var items = data.dataItems;
-                    //     console.log(items.id);
-                    //     $.each(items, function(_, item){
-                    //         $('#title').append('<p> Title: ' + item.id + '</p>');
-                    //     });
-
-                    // });
-                    
-                    
-                    
-                    
                 },
                 error: function(err){
                     console.log(err);
@@ -95,6 +78,8 @@
             });
             
         });
+
+   
     // ============End of add to cart============//
 
        // ==============Remove item from cart============//
@@ -115,11 +100,9 @@
 
                 $.ajaxSetup({ cache: false });
                 swal({
-                    toast: true,
                     title: "Success!",   
                     text: "Your item successfully Deleted!",   
-                    type: "success",   
-                    closeOnConfirm: false,
+                    type: "success",
                     timer: 3000,
                 });
                 
@@ -219,11 +202,9 @@
 
                 $.ajaxSetup({ cache: false });
                 swal({
-                    toast: true,
                     title: "Success!",   
                     html: data.status,   
-                    type: "success",   
-                    closeOnConfirm: false,
+                    type: "success",
                     timer: 3000,
                 });
                 

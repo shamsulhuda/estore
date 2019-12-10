@@ -56,15 +56,20 @@
     <!-- /.content -->
 </div>
   <!-- /.content-wrapper -->
-  @if(Request::is('admin*'))
-    @include('layouts.partial.footer')
-  @endif
+  
   <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
 <!-- Control sidebar content goes here -->
 </aside>
   <!-- /.control-sidebar -->
+<section>
+  @if(Request::is('admin*','user*'))
+    @include('layouts.partial.footer')
+  @endif
+</section>
+  
 </div>
+
 <!-- ./wrapper -->
 
 <!-- jQuery -->

@@ -68,6 +68,10 @@
    background-position: center;
 }*/
 
+.hidden{
+    display: none;
+}
+
 .preloader 
 {
     position: fixed;
@@ -281,6 +285,29 @@ button {
 }
 .product__menu {
     text-align: center;
+}
+
+.order-button button{
+    background:#252525 none repeat scroll 0 0;
+    color:#fff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 20px;
+    padding: 0 30px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none!important;
+}
+
+.order-button .btn{
+    border-radius: none !important;
+}
+.order-button button:hover{
+    background:#ff4136;
+    color:#fff !important;
 }
 .product__menu button {
     background: transparent none repeat scroll 0 0;
@@ -3805,6 +3832,20 @@ a.shipping-calculator-button:hover{
     margin-bottom: 40px;
     float: left;
 }
+.single-checkout input[type="text"]{
+    background: transparent none repeat scroll 0 0;
+    border: 1px solid #c1c1c1;
+    border-radius: 0;
+    color: #767676;
+    font-size: 12px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    width: 80%;
+    margin-bottom: 10px;
+    float: left;
+}
+
 .single-checkout-box textarea {
     background: transparent none repeat scroll 0 0;
     border: 1px solid #c1c1c1;
@@ -3878,12 +3919,24 @@ a.shipping-calculator-button:hover{
     -moz-appearance: none;
     -webkit-appearance: none;
     -o-appearance: none;
-    background: rgba(0, 0, 0, 0) url("images/icons/select-option.png") no-repeat scroll 96% 14px / 11px 9px;
+    background: rgba(0, 0, 0, 0) url("{{url('frontend/images/icons/select-option.png')}}") no-repeat scroll 96% 14px / 11px 9px;
     border: 1px solid #c1c1c1;
     height: 40px;
     line-height: 40px;
     padding-left: 20px;
 }
+
+.selectBox select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    background: rgba(0, 0, 0, 0) url("{{url('frontend/images/icons/select-option.png')}}") no-repeat scroll 96% 14px / 11px 9px;
+    border: 1px solid #c1c1c1;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+}
+
 .payment-form-inner .single-checkout-box.select-option {
     margin-top: 0;
 }

@@ -52,7 +52,7 @@
                           document.getElementById('delete-{{$product->id}}').submit();
                         }else{
                           event.preventDefault();
-                        }"><i class="fa fa-trash"></i></a>
+                        }"><i class="fa fa-trash text-danger"></i></a>
                     </span>
                   </td>
                 </tr>

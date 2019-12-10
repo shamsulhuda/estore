@@ -53,16 +53,16 @@
                                     </div>
                                     <div class="product__hover__info">
                                         <ul class="product__action">
-                                            <li><a data-id="{{ $product->id }}" title="Quick View" class="btn quick-view modal-view detail-link product_view_details"><span class="ti-plus"></span></a></li>
+                                            <li data-toggle="tooltip" title="Quick View"><a data-id="{{ $product->id }}" class="btn quick-view modal-view detail-link product_view_details"><span class="ti-plus"></span></a></li>
                                             
 
-                                            <li>
-                                                <a title="Add TO Cart"><span data-id="{{$product->id}}" class="ti-shopping-cart addCart"></span></a>
+                                            <li data-toggle="tooltip" title="Add TO Cart">
+                                                <a><span data-id="{{$product->id}}" class="ti-shopping-cart addCart"></span></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="add__to__wishlist">
-                                        <a data-toggle="tooltip" title="Add To Wishlist" class="add_to_wishlist" data-id="{{$product->id}}" data-user="@if(Auth::check()){{Auth::user()->id}}@endif"><span class="ti-heart"></span></a>
+                                        <a data-toggle="tooltip" title="Add To Wishlist" class="btn add_to_wishlist" data-id="{{$product->id}}" data-user="@if(Auth::check()){{Auth::user()->id}}@endif"><span class="ti-heart"></span></a>
                                     </div>
                                 </div>
                                 <div class="product__details">
@@ -150,12 +150,11 @@
                                             <li><a target="_blank" title="Linkedin" href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a></li>
                                             <li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="zmdi zmdi-pinterest"></i></a></li>
                                             <li><a target="_blank" title="Tumblr" href="#" class="tumblr social-icon"><i class="zmdi zmdi-tumblr"></i></a></li>
-                                            <li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="zmdi zmdi-pinterest"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="addtocart-btn">
-                                    <a href="" type="button" id="productId" class="addCart" data-id="">Add to cart</a>
+                                    <a href="" id="productId" class="addCart" data-id="">Add to cart</a>
                                 </div>
                             </div><!-- .product-info -->
                         </div><!-- .modal-product -->

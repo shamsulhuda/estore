@@ -16,7 +16,7 @@
                             <div class="bradcaump__inner text-center">
                                 <h2 class="bradcaump-title">Cart</h2>
                                 <nav class="bradcaump-inner">
-                                  <a class="breadcrumb-item" href="index.html">Home</a>
+                                  <a class="breadcrumb-item" href="{{ route('frontend') }}">Home</a>
                                   <span class="brd-separetor">/</span>
                                   <span class="breadcrumb-item active">Cart</span>
                                 </nav>
@@ -55,13 +55,13 @@
                                         <tr id="remove_row">
                                             <td class="product-thumbnail"><a href="{{route('details',$row->id)}}"><img src="{{asset("uploads/products/{$row->options->image}")}}" alt="product img" /></a></td>
                                             <td class="product-name"><a href="#">{{ $row->name }}</a></td>
-                                            <td class="product-price"><span class="amount">{{number_format($row->price,2)}}</span></td>
+                                            <td class="product-price"><span class="amount">{{number_format($row->price,2)}} Tk.</span></td>
                                             <td class="product-quantity"><input type="number" value="{{ $row->qty }}" /></td>
-                                            <td class="product-subtotal">{{ number_format($total_price,2) }}</td>
+                                            <td class="product-subtotal">{{ number_format($total_price,2) }} Tk.</td>
 
                                             
 
-                                            <td class="product-remove"><a type="button" class="btn remove_cart" id="{{$row->rowId}}">X</a></td>
+                                            <td class="product-remove"><a class="btn remove_cart" id="{{$row->rowId}}">X</a></td>
                                         </tr>
                                         @endforeach
                                         @else
@@ -97,32 +97,26 @@
                                                     <td>
                                                         <ul id="shipping_method">
                                                             <li>
-                                                                <input type="radio" /> 
                                                                 <label>
-                                                                    Flat Rate: <span class="amount">£7.00</span>
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio" /> 
-                                                                <label>
-                                                                    Free Shipping
+                                                                    Flat Rate: <span class="amount">
+                                                                    {{ $shipping_cost }}
+                                                                </span>
                                                                 </label>
                                                             </li>
                                                             <li></li>
                                                         </ul>
-                                                        <p><a class="shipping-calculator-button" href="#">Calculate Shipping</a></p>
                                                     </td>
                                                 </tr>
                                                 <tr class="order-total">
                                                     <th>Total</th>
                                                     <td>
-                                                        <strong><span class="amount">{{ Cart::total() }}</span></strong>
+                                                        <strong><span class="amount">{{Cart::total()}}</span></strong>
                                                     </td>
                                                 </tr>                                           
                                             </tbody>
                                         </table>
                                         <div class="wc-proceed-to-checkout">
-                                            <a href="checkout.html">Proceed to Checkout</a>
+                                            <a href="{{route('view.checkout')}}">Proceed to Checkout</a>
                                         </div>
                                     </div>
                                 </div>

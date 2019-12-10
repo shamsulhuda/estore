@@ -18,7 +18,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="cat-table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
@@ -46,7 +46,7 @@
                           document.getElementById('delete-{{$category->id}}').submit();
                         }else{
                           event.preventDefault();
-                        }"><i class="fa fa-trash"></i></a>
+                        }"><i class="fa fa-trash text-danger"></i></a>
                     </span>
                   </td>
                 </tr>
@@ -71,7 +71,7 @@
 
 <script>
   $(function () {
-    $("#example1").DataTable();
+    $("#cat-table").DataTable();
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,

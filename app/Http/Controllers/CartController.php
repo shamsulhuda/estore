@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Cart;
 use App\Wishlist;
+use App\Setting;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class CartController extends Controller
             $userId = Auth::user()->id;
             $total_count = Wishlist::where('user_id', $userId)->count();
         }
-    	return view('frontview.cart',compact('total_count'));
+        $shipping_cost = Setting::first()->shipping_cost;
+    	return view('frontview.cart',compact('total_count','shipping_cost'));
     }
 
     public function addCart($id){

@@ -1,6 +1,3 @@
-<div id="preloaders" class="preloader" style="background: url('{{asset('frontend/images/preloader/2.gif')}}') 50% 50% no-repeat rgb(249,249,249);">
-        
-    </div>
 <header id="header" class="htc-header">
     <!-- Start Mainmenu Area -->
     <div id="sticky-header-with-topbar" class="mainmenu__area sticky__header">
@@ -69,7 +66,7 @@
                                     <li><a href="product-details.html">product details</a></li>
                                     <li><a href="cart.html">cart</a></li>
                                     <li><a href="wishlist.html">wishlist</a></li>
-                                    <li><a href="checkout.html">checkout</a></li>
+                                    <li><a href="{{route('view.checkout')}}">checkout</a></li>
                                     <li><a href="team.html">team</a></li>
                                     <li><a href="login-register.html">login & register</a></li>
                                 </ul>
@@ -120,7 +117,7 @@
                             <ul class="user_dropdown">
                                 @if(Auth::check())
                                 <li><a href="#">{{Auth::user()->name}}</a></li>
-                                <li><a href="{{route('user.dashboard')}}"target="__blank">Dashboard</a></li>
+                                <li><a href="@if(Auth::user()->is_admin == NULL){{route('user.dashboard')}}@else {{route('admin.dashboard')}} @endif"target="__blank">Dashboard</a></li>
                                 <li>
                                     <a href="{{route('logout')}}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -138,16 +135,16 @@
 
 
                         <li class="">
-                            <div id="ex5">
+                            <div id="ex5" data-toggle="tooltip" title="Your wishlist">
                                 <span class="wishlist_heart cartBox" id="totalwish" data-total="@if(Auth::check()){{$total_count}}@else 0 @endif">
                                     <a href="{{route('user.wishlist')}}"><i class="ti-heart"></i></a>
                                 </span>
                             </div>
                         </li>
-                        <li class="cart__menu">
-                            <div id="ex4">
-                                <span class="p1 fa-stack cartBox" id="totalItemsss" data-count="{{ Cart::count()}}">
-                                    <i class="ti-shopping-cart"></i>
+                        <li class="">
+                            <div id="ex4" data-toggle="tooltip" title="Your cart">
+                                <span class="p1 fa-stack cartBox cartpann" id="totalItemsss" data-count="{{ Cart::count()}}">
+                                    <a href="{{route('view_cart')}}"><i class="ti-shopping-cart"></i></a>
                                 </span>
                             </div>
                         </li>
@@ -244,40 +241,8 @@
     </div>
     <!-- End Offset MEnu -->
     <!-- Start Cart Panel -->
-    <div class="shopping__cart">
-        <div class="shopping__cart__inner">
-            <div class="offsetmenu__close__btn">
-                <a href="#"><i class="zmdi zmdi-close"></i></a>
-            </div>
-
-            <div class="shp__cart__wrap">
-                @foreach(Cart::content() as $row)
-                <div class="shp__single__product" id="remove_row">
-                    <div class="shp__pro__thumb">
-                        <a>
-                            <img src="{{asset("uploads/products/{$row->options->image}")}}" alt="product images">
-                        </a>
-                    </div>
-                    <div class="shp__pro__details">
-                        <h2><a href="{{route('product.view')}}">{{$row->name}}</a></h2>
-                        <span class="quantity">QTY: {{$row->qty}}</span>
-                        <span class="shp__price">{{$row->price}} Tk.</span>
-                    </div>
-                    <div class="remove__btn">
-                        <a title="Remove this item" class="btn remove_cart" id="{{$row->rowId}}"><i class="zmdi zmdi-close"></i></a>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            <ul class="shoping__total">
-                <li class="subtotal">Subtotal: {{ Cart::subtotal() }}</li>
-                <li class="total__price">Total: {{Cart::total()}}</li>
-            </ul>
-            <ul class="shopping__btn">
-                <li><a href="{{route('view_cart')}}">View Cart</a></li>
-                <li class="shp__checkout"><a href="checkout.html">Checkout</a></li>
-            </ul>
-        </div>
-    </div>
+    {{-- <div class="shopping__cart" id="cartpannel">
+        @include('frontview.partial.cartpannel')
+    </div> --}}
     <!-- End Cart Panel -->
 </div>
