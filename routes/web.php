@@ -31,6 +31,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'admin', 'namespace'=>'admin'], f
 	Route::get('orders', 'OrderController@index')->name('order.index');
 	Route::get('orders/details/{id}', 'OrderController@details')->name('order.details');
 	Route::get('orders/invoice/{id}', 'OrderController@invoice')->name('order.invoice');
+	Route::get('orders/status/{id}', 'OrderController@order_status')->name('order.status');
 });
 
 //////////========== user routes ==========///////////

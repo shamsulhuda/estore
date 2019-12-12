@@ -82,16 +82,22 @@
 
                   @if($order_info->payment_id == 1)
 
-                  <b>Payment Due:</b> <strong class="text-danger">YES</strong><br>
+                  <b>Payment Due:</b> <strong class="text-danger">
+                    @if($order_info->is_completed !== 1)
+                    YES
+                    @else
+                    PAID
+                    @endif
+                  </strong><br>
                   
                   @else
                   <b>Transaction ID: {{ $order_info->transaction_id }}</b><br>
                   @endif
                   <b>Delivery status:</b> 
-                  @if($order_info->is_completed !== true)
+                  @if($order_info->is_completed !== 1)
                   <span class="text-danger">On process...</span>
                   @else
-                  <span class="text-success">Completed</span>
+                  <span class="text-success"><strong>Completed</strong></span>
                   @endif 
                 </div>
                 <!-- /.col -->

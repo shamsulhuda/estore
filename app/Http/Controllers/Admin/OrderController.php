@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Alert;
 use App\Order;
 use App\Setting;
 use App\Orderedproduct;
@@ -38,9 +39,23 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function order_status($id)
     {
-        //
+        $status = Order::find($id);
+
+        if ($status->is_completed !== 1) {
+            $status->is_completed = 1;
+            $status->save();
+
+            toast('Order mark as completed!', 'success');
+            return redirect()->back();
+        }elseif ($status->is_completed !== NULL) {
+            $status->is_completed = 0;
+            $status->save();
+
+            toast('Order mark as not completed!', 'success');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -69,8 +84,12 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
 
-        $order->is_seen_by_admin = 1;
-        $order->save();
+        if ($order->is_seen_by_admin !== 1) {
+
+            $order->is_seen_by_admin = 1;
+            $order->save();
+        }
+        
 
         $orders  = Orderedproduct::where('order_id', $id)->get();
 

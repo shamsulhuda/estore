@@ -20,25 +20,37 @@
               <table id="order-table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>#</th>
+                  <th>Order ID</th>
                   <th>Customer Name</th>
                   <th>Order time</th>
-                  <th>view order</th>
+                  <th>order activity</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($orders as $key=>$order)
                 <tr>
-                  <td>{{$key+1}}</td>
+                  <td>00{{ $order->id }}</td>
                   <td>{{ $order->user->name }}</td>
                   <td>{{ \Carbon\Carbon::parse($order->created_at)->timezone('Asia/Dhaka')->format('d/m/Y \a\t h:i a')}}</td>
                   <td>
-                    <a href="{{ route('order.details', $order->id) }}"><i class="fa fa-eye" title="view order details"></i></a> || 
-                    <a href="{{ route('order.invoice', $order->id) }}"><i class="fas fa-print" title="invoice"></i></a>
+                    @if($order->is_seen_by_admin !== 1)
+                    <a href="{{ route('order.details', $order->id) }}" class="text-info">
+                      <button class="btn btn-info btn-sm"><i class="fas fa-eye" title="view order details"></i></button></a>
+                    @else
+                    <a href="{{ route('order.details', $order->id) }}" class="text-success"><button class="btn btn-success btn-sm"><i class="fas fa-eye" title="Seen by admin"></i></button></a>
+                    @endif 
+                    <a href="{{ route('order.invoice', $order->id) }}"><button class="btn btn-info btn-sm"><i class="fas fa-print" title="invoice"></i></button></a>
                   </td>
                   <td>
-                    <span><a href="" data-toggle="tooltip" title="Edit"><i class="fa fa-check"></i></a></span> | 
+                    @if($order->is_completed !== 1)
+                    <a href="{{ route('order.status', $order->id) }}" class="text-info"><i class="fas fa-times-circle"></i> <span class="badge badge-info">pending</span></a>
+                    @else
+                    <a href="{{ route('order.status', $order->id) }}" class="text-success"><i class="fas fa-check-circle"></i> <span class="badge badge-success">shipped</span></a>
+                    @endif
+                  </td>
+                  <td>
                     <span>
                       <form id="" action="" style="display: none;" method="POST">
                           @csrf

@@ -16,6 +16,29 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        @php
+        $new_orders = App\Order::where('is_seen_by_admin',0)->count();
+        @endphp
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-danger navbar-badge">{{ $new_orders }}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          @if($new_orders > 0)
+          <span class="dropdown-item dropdown-header">You have {{ $new_orders }} new orders</span>
+          @endif
+          <div class="dropdown-divider"></div>
+          <a href="{{ route('order.index') }}" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> Check orders now
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
      
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">

@@ -98,6 +98,12 @@
               <p>
                 Orders
                 <i class="right fas fa-angle-left"></i>
+                @php
+                $pending_order = App\Order::where('is_completed',0)->count();
+                @endphp
+                @if($pending_order > 0)
+                <span class="badge badge-info right">{{ $pending_order }}</span>
+                @endif
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -122,7 +128,6 @@
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Calendar
-                <span class="badge badge-info right">2</span>
               </p>
             </a>
           </li>
